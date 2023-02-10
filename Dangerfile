@@ -12,7 +12,7 @@ github.dismiss_out_of_range_messages({
 })
 
 # ktlint
-Dir.glob("**/build/reports/ktlint*.xml").each { |report|
+Dir.glob("**/build/reports/ktlint/**/*.xml").each { |report|
     checkstyle_format.base_path = Dir.pwd
     checkstyle_format.report report.to_s
 }

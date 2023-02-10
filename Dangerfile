@@ -28,6 +28,13 @@ Dir.glob("**/build/reports/lint-results*.xml").each { |report|
 # warning 数は Android Lint と ktlint のみの合計としたいのでここで変数に保存
 warning_count = status_report[:warnings].count
 
+# Local unit test
+Dir.glob("**/build/test-results/**/*.xml").each { |report|
+  junit.parse report
+  junit.show_skipped_tests = true # スキップしたテストをワーニングとする(状況により適宜変更)
+  junit.report
+}
+
 # 説明がない場合
 fail 'Write at least one line in the description of PR.' if github.pr_body.length < 1
 
